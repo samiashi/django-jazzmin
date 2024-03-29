@@ -1318,6 +1318,17 @@ docs = ["myst-parser", "pydata-sphinx-theme", "sphinx"]
 test = ["argcomplete (>=2.0)", "pre-commit", "pytest", "pytest-mock"]
 
 [[package]]
+name = "types-polib"
+version = "1.2.0.20240327"
+description = "Typing stubs for polib"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "types-polib-1.2.0.20240327.tar.gz", hash = "sha256:d86add535343c293d3f94a16caca6ec3110ccc194a144743769f146cef6fa30d"},
+    {file = "types_polib-1.2.0.20240327-py3-none-any.whl", hash = "sha256:8cf6746e87f652599f06ac755fdd61e4582c756e7714f393fc6a89a8e8a5b152"},
+]
+
+[[package]]
 name = "types-pytz"
 version = "2024.1.0.20240203"
 description = "Typing stubs for pytz"
@@ -1483,4 +1494,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8"
-content-hash = "e1fd5f4d1867f7edb53a8e89487e1bc3088c9ff3510ad943b3d12bc691f126fa"
+content-hash = "a9311409de89871159edc4d257ae5cf4abfcb9e60da9981fd62ab1f951816cb0"

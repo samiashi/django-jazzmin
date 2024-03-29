@@ -1,12 +1,12 @@
 import logging
-from typing import List, Union, Dict, Set, Callable, Any
+from typing import Any, Callable, Dict, List, Set, Union
 from urllib.parse import urlencode
 
 from django.apps import apps
 from django.contrib.admin import ListFilter
 from django.contrib.admin.helpers import AdminForm
 from django.contrib.auth.models import AbstractUser
-from django.db.models.base import ModelBase, Model
+from django.db.models.base import Model, ModelBase
 from django.db.models.options import Options
 from django.utils.translation import gettext
 
@@ -40,8 +40,7 @@ def get_admin_url(instance: Any, admin_site: str = "admin", from_app: bool = Fal
     url = "#"
 
     try:
-
-        if type(instance) == str:
+        if isinstance(instance, str):
             app_label, model_name = instance.split(".")
             model_name = model_name.lower()
             url = reverse(
@@ -153,7 +152,11 @@ def get_view_permissions(user: AbstractUser) -> Set[str]:
 
 
 def make_menu(
-    user: AbstractUser, links: List[Dict], options: Dict, allow_appmenus: bool = True, admin_site: str = "admin"
+    user: AbstractUser,
+    links: List[Dict],
+    options: Dict,
+    allow_appmenus: bool = True,
+    admin_site: str = "admin",
 ) -> List[Dict]:
     """
     Make a menu from a list of user supplied links
@@ -165,7 +168,6 @@ def make_menu(
 
     menu = []
     for link in links:
-
         perm_matches = []
         for perm in link.get("permissions", []):
             perm_matches.append(user.has_perm(perm))
@@ -206,7 +208,11 @@ def make_menu(
         # App links
         elif "app" in link and allow_appmenus:
             children = [
-                {"name": child.get("verbose_name", child["name"]), "url": child["url"], "children": None}
+                {
+                    "name": child.get("verbose_name", child["name"]),
+                    "url": child["url"],
+                    "children": None,
+                }
                 for child in get_app_admin_urls(link["app"], admin_site=admin_site)
                 if child["model"] in model_permissions
             ]

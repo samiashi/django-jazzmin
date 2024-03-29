@@ -1,6 +1,6 @@
 import copy
 import logging
-from typing import Dict, Any
+from typing import Any, Dict
 
 from django.conf import settings
 from django.templatetags.static import static
@@ -229,11 +229,11 @@ def get_settings() -> Dict:
             jazzmin_settings["search_models_parsed"].append(jazzmin_search_model)
 
     # Deal with single strings in hide_apps/hide_models and make sure we lower case 'em
-    if type(jazzmin_settings["hide_apps"]) == str:
+    if isinstance(jazzmin_settings["hide_apps"], str):
         jazzmin_settings["hide_apps"] = [jazzmin_settings["hide_apps"]]
     jazzmin_settings["hide_apps"] = [x.lower() for x in jazzmin_settings["hide_apps"]]
 
-    if type(jazzmin_settings["hide_models"]) == str:
+    if isinstance(jazzmin_settings["hide_models"], str):
         jazzmin_settings["hide_models"] = [jazzmin_settings["hide_models"]]
     jazzmin_settings["hide_models"] = [x.lower() for x in jazzmin_settings["hide_models"]]
 
@@ -313,7 +313,12 @@ def get_ui_tweaks() -> Dict:
         "sidebar_classes": classes("sidebar", "sidebar_disable_expand"),
         "navbar_classes": classes("navbar", "no_navbar_border", "navbar_small_text"),
         "body_classes": classes(
-            "accent", "body_small_text", "navbar_fixed", "footer_fixed", "sidebar_fixed", "layout_boxed"
+            "accent",
+            "body_small_text",
+            "navbar_fixed",
+            "footer_fixed",
+            "sidebar_fixed",
+            "layout_boxed",
         )
         + theme_body_classes,
         "actions_classes": classes("actions_sticky_top"),

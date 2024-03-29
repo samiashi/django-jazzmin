@@ -57,6 +57,7 @@ mypy = "^0.931"                 # Type checking
 click = "^8.0.3"                # Framework for building cli's
 ipdb = "^0.13.9"                # ipython breakpoints
 ruff = "*"                      # linter and code formatter
+django-stubs = "*"              # Stubs for django
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/farridav/django-jazzmin/issues"
